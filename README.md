@@ -4,6 +4,10 @@
 
 Nuxt starter for internal tools, admin dashboards, and operational surfaces where UI strings, approval copy, and audit-heavy content need stronger structure.
 
+![Contentrain Nuxt Admin Console cover](./media/cover.png)
+
+![Contentrain Nuxt Admin Console preview](./media/preview.gif)
+
 ## Start
 
 ```bash
