@@ -17,7 +17,15 @@ pnpm dev
 pnpm check
 pnpm build
 pnpm preview
+pnpm deploy:netlify
 ```
+
+## Demo routes
+
+- `/`
+- `/localization`
+- `/operations`
+- `/architecture`
 
 ## Why this starter exists
 
@@ -30,3 +38,9 @@ Official references:
 - [SDK](https://ai.contentrain.io/packages/sdk.html)
 - [Docs](https://docs.contentrain.io/)
 - [Studio](https://studio.contentrain.io/)
+
+## Deploy
+
+- Netlify build command: `pnpm deploy:netlify`
+- Netlify publish directory: framework-managed
+- The starter already sets `NITRO_PRESET=netlify` inside the deploy script
