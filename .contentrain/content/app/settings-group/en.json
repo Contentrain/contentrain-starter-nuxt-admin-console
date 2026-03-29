@@ -1,0 +1,56 @@
+{
+  "settings-approval": {
+    "items": [
+      {
+        "hint": "Warnings and notices reflect the configured threshold.",
+        "label": "Required reviewers",
+        "status": "healthy",
+        "value": "2"
+      },
+      {
+        "hint": "Managed through ops-notice entries.",
+        "label": "Escalation copy",
+        "status": "published",
+        "value": "Centralized"
+      }
+    ],
+    "summary": "Review thresholds, state labels, and operator guidance.",
+    "title": "Approval controls"
+  },
+  "settings-locales": {
+    "items": [
+      {
+        "hint": "Default review language.",
+        "label": "Source locale",
+        "status": "published",
+        "value": "en"
+      },
+      {
+        "hint": "Build-safe before deploy.",
+        "label": "Missing keys alerting",
+        "status": "healthy",
+        "value": "Enabled"
+      }
+    ],
+    "summary": "Locale-aware UI strings with validation in the same repo.",
+    "title": "Localization system"
+  },
+  "settings-tenant": {
+    "items": [
+      {
+        "hint": "Ready for white-label overrides.",
+        "label": "Default seat label",
+        "status": "draft",
+        "value": "Workspace member"
+      },
+      {
+        "hint": "Shared between pricing and upgrade routes.",
+        "label": "Plan naming",
+        "status": "healthy",
+        "value": "Centralized"
+      }
+    ],
+    "summary": "Terminology and route copy that can diverge by workspace.",
+    "title": "Tenant defaults"
+  }
+}

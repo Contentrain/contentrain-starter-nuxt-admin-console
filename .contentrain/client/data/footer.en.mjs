@@ -1,0 +1,40 @@
+export default {
+  "blurb": "Nuxt starter for operational copy, approval states, and localization-heavy product work.",
+  "columns": [
+    {
+      "links": [
+        {
+          "href": "https://ai.contentrain.io/packages/sdk.html",
+          "label": "SDK"
+        },
+        {
+          "href": "https://docs.contentrain.io/",
+          "label": "Docs"
+        },
+        {
+          "href": "https://studio.contentrain.io/",
+          "label": "Studio"
+        }
+      ],
+      "title": "Contentrain"
+    },
+    {
+      "links": [
+        {
+          "href": "/operations",
+          "label": "Operations"
+        },
+        {
+          "href": "/localization",
+          "label": "Localization"
+        },
+        {
+          "href": "/architecture",
+          "label": "Architecture"
+        }
+      ],
+      "title": "Routes"
+    }
+  ],
+  "legal_notice": "Contentrain operator starter."
+}

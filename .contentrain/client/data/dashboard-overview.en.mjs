@@ -1,0 +1,9 @@
+export default {
+  "environment_badge": "Review environment",
+  "eyebrow": "Admin console starter",
+  "primary_cta_href": "/localization",
+  "primary_cta_label": "Open localization view",
+  "status_note": "Three approval-sensitive surfaces changed today without editing Vue templates.",
+  "summary": "This starter is tuned for teams that operate dashboards all day: reviewers, support leads, revenue ops, and localization managers.",
+  "title": "Run approvals, localization, and policy-heavy UI from structured content."
+}

@@ -1,0 +1,30 @@
+{
+  "approval-sla": {
+    "delta": "-18m",
+    "label": "Approval SLA",
+    "note": "Average time from copy change to reviewed operator state.",
+    "trend": "down",
+    "value": "47m"
+  },
+  "dict-coverage": {
+    "delta": "+9 pts",
+    "label": "Dictionary coverage",
+    "note": "Most admin chrome now comes from the ui-copy dictionary model.",
+    "trend": "up",
+    "value": "96%"
+  },
+  "localization-backlog": {
+    "delta": "-6",
+    "label": "Localization backlog",
+    "note": "Missing locales across onboarding, support, and team settings.",
+    "trend": "down",
+    "value": "14 keys"
+  },
+  "ops-incidents": {
+    "delta": "steady",
+    "label": "Content incidents",
+    "note": "One broken locale key prevented before release.",
+    "trend": "steady",
+    "value": "1"
+  }
+}
