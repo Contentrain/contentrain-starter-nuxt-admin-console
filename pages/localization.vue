@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { dictionary, query, type BillingPlan, type SettingsGroup } from "#contentrain";
+import type { BillingPlan, SettingsGroup } from "#contentrain";
 
-const copy = dictionary("ui-copy").locale("en").get();
-const groups = query("settings-group").locale("en").all() as SettingsGroup[];
-const plans = query("billing-plan").locale("en").all() as BillingPlan[];
+type LocalizationPayload = {
+  copy: Record<string, string>;
+  groups: SettingsGroup[];
+  plans: BillingPlan[];
+};
+
+const { data } = await useFetch<LocalizationPayload>("/api/localization");
+const copy = computed(() => data.value?.copy ?? {});
+const groups = computed(() => data.value?.groups ?? []);
+const plans = computed(() => data.value?.plans ?? []);
 </script>
 
 <template>

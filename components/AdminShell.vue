@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { dictionary, singleton, type Footer, type Navigation, type SiteSettings } from "#contentrain";
+import type { Footer, Navigation, SiteSettings } from "#contentrain";
 
 const props = defineProps<{
   activePath: string;
@@ -10,11 +10,19 @@ const props = defineProps<{
 
 type NavigationItem = NonNullable<Navigation["items"]>[number];
 
-const site = singleton("site-settings").locale("en").get() as SiteSettings;
-const navigation = singleton("navigation").locale("en").get() as Navigation;
-const footer = singleton("footer").locale("en").get() as Footer;
-const copy = dictionary("ui-copy").locale("en");
-const navItems = (navigation.items ?? []) as NavigationItem[];
+type ShellPayload = {
+  copy: Record<string, string>;
+  footer: Footer;
+  navigation: Navigation;
+  site: SiteSettings;
+};
+
+const { data: shell } = await useFetch<ShellPayload>("/api/shell");
+const site = computed(() => shell.value?.site);
+const navigation = computed(() => shell.value?.navigation);
+const footer = computed(() => shell.value?.footer);
+const copy = computed(() => shell.value?.copy ?? {});
+const navItems = computed(() => (navigation.value?.items ?? []) as NavigationItem[]);
 
 function isActive(href: string) {
   if (href === "/") {
@@ -28,8 +36,8 @@ function isActive(href: string) {
 <template>
   <div class="admin-app">
     <aside class="sidebar">
-      <NuxtLink to="/" class="brand">{{ site.site_name }}</NuxtLink>
-      <p class="sidebar-copy">{{ site.site_tagline }}</p>
+      <NuxtLink to="/" class="brand">{{ site?.site_name }}</NuxtLink>
+      <p class="sidebar-copy">{{ site?.site_tagline }}</p>
 
       <nav class="sidebar-nav">
         <NuxtLink
@@ -45,12 +53,12 @@ function isActive(href: string) {
       </nav>
 
       <div class="sidebar-panel surface">
-        <div class="eyebrow">{{ copy.get("surface.caption") ?? "Structured operator content" }}</div>
+        <div class="eyebrow">{{ copy["surface.caption"] ?? "Structured operator content" }}</div>
         <p class="muted">
-          {{ copy.get("surface.note") ?? "Ideal for settings screens, warnings, workflows, and admin i18n." }}
+          {{ copy["surface.note"] ?? "Ideal for settings screens, warnings, workflows, and admin i18n." }}
         </p>
-        <a :href="navigation.cta_href ?? 'https://docs.contentrain.io/'" class="button ghost">
-          {{ navigation.cta_label ?? "Open Docs" }}
+        <a :href="navigation?.cta_href ?? 'https://docs.contentrain.io/'" class="button ghost">
+          {{ navigation?.cta_label ?? "Open Docs" }}
         </a>
       </div>
     </aside>
@@ -63,7 +71,7 @@ function isActive(href: string) {
           <p class="lead">{{ description }}</p>
         </div>
         <div class="topbar-meta">
-          <span class="pill">{{ navigation.announcement_label }}</span>
+          <span class="pill">{{ navigation?.announcement_label }}</span>
           <a href="https://studio.contentrain.io/" class="text-link">Studio</a>
         </div>
       </header>
@@ -72,11 +80,11 @@ function isActive(href: string) {
 
       <footer class="footer">
         <div class="footer-copy">
-          <span>{{ footer.blurb }}</span>
-          <span>{{ footer.legal_notice }}</span>
+          <span>{{ footer?.blurb }}</span>
+          <span>{{ footer?.legal_notice }}</span>
         </div>
         <div class="footer-columns">
-          <section v-for="column in footer.columns ?? []" :key="column.title" class="footer-column">
+          <section v-for="column in footer?.columns ?? []" :key="column.title" class="footer-column">
             <strong>{{ column.title }}</strong>
             <div class="footer-links">
               <a v-for="link in column.links ?? []" :key="link.label" :href="link.href">

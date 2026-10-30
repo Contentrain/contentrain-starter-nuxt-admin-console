@@ -1,5 +1,6 @@
 {
   "domain": "ops",
+  "title_field": "title",
   "fields": {
     "body": {
       "required": true,

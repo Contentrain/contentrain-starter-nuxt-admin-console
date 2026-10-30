@@ -1,5 +1,6 @@
 {
   "domain": "system",
+  "title_field": "legal_notice",
   "fields": {
     "blurb": {
       "type": "text"
@@ -33,7 +34,8 @@
       "type": "array"
     },
     "legal_notice": {
-      "type": "string"
+      "type": "string",
+      "required": true
     }
   },
   "i18n": true,
