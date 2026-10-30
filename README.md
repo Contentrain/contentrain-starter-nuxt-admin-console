@@ -1,4 +1,5 @@
-<!-- cover -->
+<p align="center"><img src=".github/cover.png" alt="Contentrain Nuxt admin console starter — content in Git" width="100%"></p>
+
 # Contentrain Nuxt Admin Console
 
 A Nuxt 4 starter for internal tools and admin consoles: a dashboard, an approval queue, ops notices, an audit log, settings groups, billing plans and UI strings. All of that copy is content in `.contentrain/`, so none of it is hard-coded in Vue templates.
@@ -8,7 +9,7 @@ Built on [Contentrain](https://ai.contentrain.io), the content governance ecosys
 - every change is reviewable;
 - AI agents edit content through the same validated models as people do.
 
-![Contentrain Nuxt Admin Console cover](./media/cover.png)
+![Contentrain Nuxt Admin Console screenshot](./media/cover.png)
 
 ![Contentrain Nuxt Admin Console preview](./media/preview.gif)
 
@@ -76,10 +77,15 @@ Models live in `.contentrain/models/` and content in `.contentrain/content/`. Af
 
 ## Contentrain links
 
+Contentrain has four parts: the open-source tools, Studio, Migrate and Bridge.
+
 - Contentrain AI, MCP, CLI and SDK: [ai.contentrain.io](https://ai.contentrain.io)
 - Query SDK: [ai.contentrain.io/packages/sdk](https://ai.contentrain.io/packages/sdk)
 - Nuxt guide: [ai.contentrain.io/guides/frameworks#nuxt-3](https://ai.contentrain.io/guides/frameworks#nuxt-3)
 - Contentrain Studio: [contentrain.io/studio](https://contentrain.io/studio)
+- Open-source tools (MIT): [github.com/Contentrain/ai](https://github.com/Contentrain/ai)
+- Migrate, WordPress to Astro: [migrate.contentrain.io](https://migrate.contentrain.io)
+- Bridge, a free WordPress plugin that exports content as a Contentrain store: [github.com/Contentrain/wordpress-bridge](https://github.com/Contentrain/wordpress-bridge)
 
 ## License
 
