@@ -1,42 +1,49 @@
 <script setup lang="ts">
-import {
-  query,
-  singleton,
-  type AuditEvent,
-  type DashboardOverview,
-  type DashboardStat,
-  type OpsNotice,
-  type SeoDefaults,
-  type WorkQueueItem,
+import type {
+  AuditEvent,
+  DashboardOverview,
+  DashboardStat,
+  OpsNotice,
+  SeoDefaults,
+  WorkQueueItem,
 } from "#contentrain";
 
-const overview = singleton("dashboard-overview").locale("en").get() as DashboardOverview;
-const seo = singleton("seo-defaults").locale("en").get() as SeoDefaults;
-const stats = query("dashboard-stat").locale("en").all() as DashboardStat[];
-const queue = query("work-queue-item").locale("en").all() as WorkQueueItem[];
-const notices = query("ops-notice").locale("en").all() as OpsNotice[];
-const audit = query("audit-event").locale("en").sort("timestamp", "desc").limit(3).all() as AuditEvent[];
+type OverviewPayload = {
+  audit: AuditEvent[];
+  notices: OpsNotice[];
+  overview: DashboardOverview;
+  queue: WorkQueueItem[];
+  seo: SeoDefaults;
+  stats: DashboardStat[];
+};
+
+const { data } = await useFetch<OverviewPayload>("/api/overview");
+const overview = computed(() => data.value?.overview);
+const stats = computed(() => data.value?.stats ?? []);
+const queue = computed(() => data.value?.queue ?? []);
+const notices = computed(() => data.value?.notices ?? []);
+const audit = computed(() => data.value?.audit ?? []);
 
 useSeoMeta({
-  title: seo.meta_title,
-  description: seo.meta_description,
+  title: () => data.value?.seo?.meta_title,
+  description: () => data.value?.seo?.meta_description,
 });
 </script>
 
 <template>
   <AdminShell
     active-path="/"
-    :kicker="overview.eyebrow ?? 'Overview'"
-    :title="overview.title"
-    :description="overview.summary"
+    :kicker="overview?.eyebrow ?? 'Overview'"
+    :title="overview?.title"
+    :description="overview?.summary"
   >
     <section class="hero-banner surface">
       <div>
-        <span class="pill">{{ overview.environment_badge }}</span>
-        <p class="muted">{{ overview.status_note }}</p>
+        <span class="pill">{{ overview?.environment_badge }}</span>
+        <p class="muted">{{ overview?.status_note }}</p>
       </div>
-      <NuxtLink :to="overview.primary_cta_href ?? '/localization'" class="button">
-        {{ overview.primary_cta_label ?? "Open localization view" }}
+      <NuxtLink :to="overview?.primary_cta_href ?? '/localization'" class="button">
+        {{ overview?.primary_cta_label ?? "Open localization view" }}
       </NuxtLink>
     </section>
 

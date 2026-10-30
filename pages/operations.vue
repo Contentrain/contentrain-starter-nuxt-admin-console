@@ -1,9 +1,16 @@
 <script setup lang="ts">
-import { query, type AuditEvent, type OpsNotice, type WorkQueueItem } from "#contentrain";
+import type { AuditEvent, OpsNotice, WorkQueueItem } from "#contentrain";
 
-const notices = query("ops-notice").locale("en").all() as OpsNotice[];
-const queue = query("work-queue-item").locale("en").all() as WorkQueueItem[];
-const events = query("audit-event").locale("en").sort("timestamp", "desc").all() as AuditEvent[];
+type OperationsPayload = {
+  events: AuditEvent[];
+  notices: OpsNotice[];
+  queue: WorkQueueItem[];
+};
+
+const { data } = await useFetch<OperationsPayload>("/api/operations");
+const notices = computed(() => data.value?.notices ?? []);
+const queue = computed(() => data.value?.queue ?? []);
+const events = computed(() => data.value?.events ?? []);
 </script>
 
 <template>

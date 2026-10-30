@@ -1,5 +1,6 @@
 {
   "domain": "system",
+  "title_field": "cta_label",
   "fields": {
     "announcement_label": {
       "type": "string"
@@ -8,7 +9,8 @@
       "type": "string"
     },
     "cta_label": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "items": {
       "items": {

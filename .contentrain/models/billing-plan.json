@@ -1,5 +1,6 @@
 {
   "domain": "app",
+  "title_field": "name",
   "fields": {
     "cadence": {
       "type": "string"
